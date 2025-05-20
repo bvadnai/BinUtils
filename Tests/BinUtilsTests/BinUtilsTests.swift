@@ -41,8 +41,8 @@ class BinUtilsTests: XCTestCase {
             let a = try! unpack("<2H", f.readData(ofLength: 4))
             f.closeFile()
 
-            XCTAssertEqual(a[0] as? Int, 64207)
-            XCTAssertEqual(a[1] as? Int, 65261)
+            XCTAssertEqual(a[0] as? Int, 65226) // CAFE
+            XCTAssertEqual(a[1] as? Int, 48826) // BABE
         } else {
             XCTFail("cannot open \("/bin/ls") for reading")
         }

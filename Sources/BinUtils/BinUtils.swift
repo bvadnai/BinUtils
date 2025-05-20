@@ -79,10 +79,12 @@ public func hexlify(_ data:Data) -> String {
     // https://docs.python.org/2/library/binascii.html
 
     var s = String()
-    var byte: UInt8 = 0
+    
+    let nsData = data as NSData
+    var bytes = [UInt8](repeating: 0, count: data.count)
+    nsData.getBytes(&bytes, length: data.count)
 
-    for i in 0 ..< data.count {
-        NSData(data: data).getBytes(&byte, range: NSMakeRange(i, 1))
+    for byte in bytes {
         s = s.appendingFormat("%02x", byte)
     }
 
